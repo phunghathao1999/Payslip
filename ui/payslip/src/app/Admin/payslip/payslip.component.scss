@@ -1,0 +1,80 @@
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container > mat-card {
+    background-color: #f1f1f1;
+    width: 223px;
+    margin: 10px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 30px;
+}
+
+.header {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.addbtn {
+    margin-left: 2%;
+    width: 7%;
+}
+
+.field-sort {
+    padding-left: 2%;
+    width: 20%;
+}
+
+.field-search {
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 65%;
+}
+
+.pagination {
+    clear: both;
+}
+
+.pagination-outer-container {
+    display: flex;
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+}
+
+.pagination-page-size {
+    display: flex;
+    align-items: baseline;
+    margin-right: 8px;
+}
+
+.pagination-page-size-label {
+    margin: 0 4px;
+}
+
+.mat-form-field {
+    text-align: left;
+}
+
+.paginator-page-size-select {
+    margin: 6px 4px 0 4px;
+    width: 56px;
+}
+
+.paginator-range-actions {
+    display: flex;
+    align-items: center;
+}
+
+.mat-paginator-range-label {
+    margin: 0 32px 0 24px;
+}

@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Cập nhật</h1>
+
+<div mat-dialog-content>
+    <form class="form" [formGroup]="formUpEmployee" (ngSubmit)="updateEmployee()">
+        <div class="formEmployee">
+            <mat-form-field class="field-full-width">
+                <mat-label>Họ tên</mat-label>
+                <input matInput formControlName="fullName" autocomplete="off">
+                <mat-error *ngIf="fullName.invalid && fullName.touched && fullName.errors.required"> Tên không rỗng </mat-error>
+                <mat-error *ngIf="fullName.invalid && fullName.touched && fullName.errors.minlength"> Tên không ít hơn 5 kí tự </mat-error>
+                <mat-error *ngIf="fullName.invalid && fullName.touched && fullName.errors.specialCharacter"> Tên chứa kí tự đặt biệt </mat-error>
+            </mat-form-field>
+            <mat-form-field class="field-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" [disabled]="false" autocomplete="off">
+            </mat-form-field>
+            <table class="field-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="field-full-width">
+                            <mat-label>Số điện thoại</mat-label>
+                            <input type="number" matInput formControlName="telephone" autocomplete="off">
+                            <mat-error *ngIf="email.invalid && email.touched && email.errors.required"> Số điện thoại không rỗng </mat-error>
+                            <mat-error *ngIf="email.invalid && email.touched && email.errors.minlength"> Không ít hơn 10 số </mat-error>
+                            <mat-error *ngIf="email.invalid && email.touched && email.errors.maxLength"> Không nhiều hơn 12 số </mat-error>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="field-full-width">
+                            <mat-label>Ngày sinh</mat-label>
+                            <input matInput formControlName="birthday" [matDatepicker]="dp3" disabled autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                            <mat-error *ngIf="email.invalid && email.touched && email.errors.required"> Ngày sinh không rỗng </mat-error>
+                            <mat-error *ngIf="email.invalid && email.touched && email.errors.curentDay"> Không lớn hơn ngày hiện tại </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <mat-form-field class="field-full-width">
+                <mat-label>Trạng thái</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="START"> START </mat-option>
+                    <mat-option value="DONE"> DONE </mat-option>
+                </mat-select>
+                <mat-error *ngIf="status.invalid && status.touched && status.errors.required"> Chọn loại dự án </mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button [disabled]="formUpEmployee.invalid" color="primary" type="submit">Cập nhật</button>
+    </form>
+</div>
+
+

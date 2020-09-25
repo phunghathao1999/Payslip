@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Thêm dự án</h1>
+
+<div mat-dialog-content>
+    <form class="form" [formGroup]="formUpdateWork" (ngSubmit)="updateWork()">
+         <mat-form-field class="field-full-width">
+            <mat-label>Tên dự án</mat-label>
+            <input matInput formControlName="summary" autocomplete="off" >
+            <mat-error *ngIf="summary.invalid && summary.touched && summary.errors.required"> Tên không rỗng </mat-error>
+            <mat-error *ngIf="summary.invalid && summary.touched && summary.errors.minlength"> Tên không ít hơn 5 kí tự </mat-error>
+         </mat-form-field>
+         <table class="field-full-width" cellspacing="0">
+            <tr>
+               <td>
+                  <mat-form-field class="field-full-width">
+                     <mat-label>Chọn dự án</mat-label>
+                     <mat-select formControlName="idProject">
+                        <mat-option *ngFor="let project of projects" [value]="project.idProject">
+                           {{ project.nameProject }}
+                        </mat-option>
+                     </mat-select>
+                     <mat-error *ngIf="idProject.invalid && idProject.touched && idProject.errors.required"> Chọn loại dự án </mat-error>
+                  </mat-form-field>
+               </td>
+               <td>
+                  <mat-form-field class="field-full-width">
+                     <mat-label>Trạng thái</mat-label>
+                     <mat-select formControlName="status">
+                        <mat-option value="START"> START </mat-option>
+                        <mat-option value="DONE"> DONE </mat-option>
+                     </mat-select>
+                     <mat-error *ngIf="status.invalid && status.touched && status.errors.required"> Chọn loại dự án </mat-error>
+                  </mat-form-field>
+               </td>
+            </tr>
+      </table>
+         <mat-form-field class="field-full-width">
+            <mat-label>Mô tả</mat-label>
+            <textarea matInput formControlName="description" autocomplete="off"></textarea>
+            <mat-error *ngIf="description.invalid && description.touched && description.errors.required"> Mô tả không rỗng </mat-error>
+         </mat-form-field>
+        <button mat-raised-button [disabled]="formUpdateWork.invalid" color="primary" type="submit">Thêm</button>
+    </form>
+</div>
+
+

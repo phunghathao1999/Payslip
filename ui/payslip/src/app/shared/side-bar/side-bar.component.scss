@@ -1,0 +1,54 @@
+
+.toggle-sidebar-button {
+    width: 187px;
+    transition: width 0.3s;
+    position: fixed;
+    height: 48px;
+    bottom: 0;
+    padding: 0 16px;
+    background-color: #fafafa;
+    border: 0;
+    border-top: 1px solid #dbdbdb;
+    color: #666;
+    display: flex;
+    align-items: center;
+    text-align: right;
+}
+
+.show-icon {
+    padding-right: 8px;
+}
+
+a {
+    padding-left: 20px;
+}
+
+a:hover, a:active{
+    background: lightgray;
+    color: #3f51b5;
+}
+
+@media only screen and (min-width: 1200px) {
+    .sidenav {
+        width: 220px;
+    }
+    .mat-list-show {
+        visibility: visible;
+    }
+    .mat-list-hidden {
+        visibility: hidden;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .sidenav {
+        width: 60px;
+    }
+    .mat-list-show {
+        display: none;
+        visibility: hidden;
+    }
+    .mat-list-hidden {
+        visibility: visible;
+    }  
+}

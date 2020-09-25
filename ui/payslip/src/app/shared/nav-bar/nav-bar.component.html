@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <mat-icon class="icon-logo">payment</mat-icon>
+        <span class="title-logo">Payslips</span>
+        <span class="navbar-right"></span>
+        <div *ngIf="!user">
+            <a mat-button routerLink="login"><mat-icon aria-hidden="false" aria-label="Example user verified icon">login</mat-icon>Đăng nhập</a>
+        </div>
+        <div *ngIf="user">
+            <button [matMenuTriggerFor]="menu" mat-button="">
+                <span class="mat-button-wrapper"> Xin chào {{ user }}
+                <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true">arrow_drop_down</mat-icon>
+                </span>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/profile">
+                <mat-icon>person</mat-icon>
+                <span>Thông tin</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Đăng xuất</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

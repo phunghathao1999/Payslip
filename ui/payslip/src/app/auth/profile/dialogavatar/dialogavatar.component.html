@@ -1,0 +1,6 @@
+<!-- <h1 mat-dialog-title>Ảnh đại diện</h1> -->
+<div class="content" mat-dialog-content>
+    <img mat-card-image src="{{img}}" alt="avatar">
+    <button mat-button color="warn"(click)="addFiles()"><mat-icon>add_a_photo</mat-icon>  </button>
+    <input type="file" #file (change)="onFilesAdded()"  multiple="multiple" style="display:none;"/>
+</div>

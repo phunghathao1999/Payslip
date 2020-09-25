@@ -1,0 +1,90 @@
+<h1 mat-dialog-title>Thêm mới</h1>
+<div mat-dialog-content>
+    <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="formEmployee">
+            <form class="formEmployee" [formGroup]="formEmployee" (ngSubmit)="createInformation(stepper)">
+                <ng-template matStepLabel>Nhập thông tin</ng-template>
+                <mat-form-field class="width-450" appearance="outline">
+                    <mat-label>Họ tên</mat-label>
+                        <input matInput formControlName="fullName" autocomplete="off">
+                        <mat-error *ngIf="fullName.invalid && fullName.touched && fullName.errors.required"> Tên không rỗng </mat-error>
+                        <mat-error *ngIf="fullName.invalid && fullName.touched && fullName.errors.minlength"> Tên không ít hơn 5 kí tự </mat-error>
+                        <mat-error *ngIf="fullName.invalid && fullName.touched && fullName.errors.specialCharacter"> Tên chứa kí tự đặt biệt </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="width-450" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" autocomplete="off">
+                        <mat-error *ngIf="email.invalid && email.touched && email.errors.required"> Email không rỗng </mat-error>
+                        <mat-error *ngIf="email.invalid && email.touched && email.errors.email"> Email không hợp lệ </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="width-215" appearance="outline">
+                        <mat-label>Số điện thoại</mat-label>
+                        <input matInput type="number" formControlName="telephone" autocomplete="off">
+                        <mat-error *ngIf="telephone.invalid && telephone.touched && telephone.errors.required"> Số điện thoại không rỗng </mat-error>
+                        <mat-error *ngIf="telephone.invalid && telephone.touched && telephone.errors.minlength"> Không ít hơn 10 số </mat-error>
+                        <mat-error *ngIf="telephone.invalid && telephone.touched && telephone.errors.maxLength"> Không nhiều hơn 12 số </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="width-215" appearance="outline">
+                        <mat-label>Ngày sinh</mat-label>
+                        <input matInput formControlName="birthday" [matDatepicker]="dp3" disabled autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                        <mat-error *ngIf="birthday.invalid && birthday.touched && birthday.errors.required"> Ngày sinh không rỗng </mat-error>
+                        <mat-error *ngIf="birthday.invalid && birthday.touched && birthday.errors.curentDay"> Không lớn hơn ngày hiện tại </mat-error>
+                    </mat-form-field>
+                <div>
+                    <button class="btn-formEm" [disabled]="formEmployee.invalid" mat-raised-button color="primary">Tiếp</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="formCheckMail" [optional]="isOptional">
+            <form [formGroup]="formCheckMail">
+                <ng-template matStepLabel>Xác nhận email</ng-template>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nhập mã</mat-label>
+                    <input matInput formControlName="ckeckMail" autocomplete="off">
+                    <mat-error *ngIf="ckeckMail.invalid && ckeckMail.touched && email.errors.required">Vui lòng nhập mã</mat-error>
+                    <div class="error" *ngIf="Token"> Email không tồn tại </div>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Trước</button>
+                    <button mat-button (click)="checkEmail(stepper)">Sau</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="formCrPassword" [optional]="isOptional">
+            <form [formGroup]="formCrPassword">
+                <ng-template matStepLabel>Tạo mật khẩu</ng-template>
+                <div class="formCrPassword">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mật khẩu</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="password.invalid && password.touched && password.errors.required">Không được bỏ trống</mat-error>
+                    </mat-form-field><br>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Xác nhận mật khẩu</mat-label>
+                        <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="configpassword">
+                        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="configpassword.invalid && configpassword.touched && configpassword.errors.required">Không được bỏ trống</mat-error>
+                        <div class="error" *ngIf="formCrPassword.errors?.configpassword">Mật khẩu không trùng nhau</div>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Trước</button>
+                    <button mat-button [disabled]="formCrPassword.invalid" (click)="createPassword()">Tạo</button>
+                </div>
+            </form>
+          </mat-step>
+    </mat-horizontal-stepper>
+
+</div>
+
+

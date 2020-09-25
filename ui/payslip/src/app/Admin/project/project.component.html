@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="title-page">
+      Project
+    </div>
+    <div class="header">
+      <button class="addbtn" mat-icon-button (click)="dialogAddProject()"><mat-icon>adduser</mat-icon></button>
+      <mat-form-field class="field-sort" appearance="outline">
+        <mat-label>Sắp xếp</mat-label>
+        <mat-select [(value)]="pagination.sortKey">
+          <mat-option value="nameProject" (click)="sort('nameProject')"> Tên </mat-option>
+          <mat-option value="joinDay" (click)="sort('joinDay')"> Ngày vào làm </mat-option>
+          <mat-option value="status" (click)="sort('status')"> Trạng thái </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="field-search" appearance="outline">
+        <mat-label>Tìm kiếm</mat-label>
+        <input matInput (keyup)="searchProject()" [(ngModel)]="keySearch" autocomplete="off">
+      </mat-form-field>
+    </div>
+  
+    <div class="mat-elevation-z8 ">
+      <table mat-table [dataSource]="projects?.pageOfItems">
+    
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.idProject}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="nameProject">
+          <th mat-header-cell *matHeaderCellDef> Tên dự án </th>
+          <td mat-cell *matCellDef="let element"> {{element.nameProject}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef> Ngày bắt đầu </th>
+          <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef> Ngày kết thúc </th>
+          <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="typeProject">
+          <th mat-header-cell *matHeaderCellDef> Loại dự án </th>
+          <td mat-cell *matCellDef="let element"> {{element.typeProject}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Trạng thái </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Mô tả </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"><button type="button" mat-icon-button (click)="dialogUpdatePro(element)"><mat-icon>open_in_new</mat-icon></button></td>
+        </ng-container>
+  
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"><button type="button" mat-icon-button color="primary" (click)="dialogDeletePro(element)"><mat-icon>delete</mat-icon></button></td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="projectColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: projectColumns;"></tr>
+      </table>
+      <div class="pagination">
+        <div class="pagination-outer-container">
+          <div class="pagination-container">
+            <div class="pagination-page-size">
+              <div class="pagination-page-size-label">Hiển thị: </div>
+              <mat-form-field class="paginator-page-size-select">
+                <mat-select>
+                  <mat-option (click)="pagaSize(10)">10</mat-option>
+                  <mat-option (click)="pagaSize(20)">20</mat-option>
+                  <mat-option (click)="pagaSize(40)">40</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="paginator-range-actions">
+              <div class="paginator-range-label">
+                {{ projects?.currentPage*projects?.pageSize }} - {{ projects?.currentPage*projects?.currentPage + projects?.pageSize }} của {{ projects?.totalItems }}
+              </div>
+              <button mat-button color="primary" [disabled]="projects?.currentPage == 0" (click)="setPage(projects?.currentPage - 1)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+              <button mat-button color="primary" [disabled]="projects?.currentPage == projects?.totalPages - 1" (click)="setPage(projects?.currentPage + 1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

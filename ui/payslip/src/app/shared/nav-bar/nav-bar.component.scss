@@ -1,0 +1,28 @@
+.icon-logo {
+    padding-left: 10px;
+}
+
+.title-logo {
+    padding-left: 20px;
+    font-size: 27px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, a:active{
+    background: lightgray;
+    color: #3f51b5;
+}
+
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-right {
+    flex: 1 1 auto;
+}

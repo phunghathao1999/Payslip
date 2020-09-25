@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>Thêm công việc</h1>
+
+<div mat-dialog-content>
+    <form class="form" [formGroup]="formUpdate" (ngSubmit)="update()">
+        <mat-form-field class="field-full-width">
+            <mat-label>Tiêu đề</mat-label>
+            <input matInput formControlName="title" autocomplete="off" >
+            <mat-error *ngIf="title.invalid && title.touched && title.errors.required"> Tiêu đề không rỗng </mat-error>
+        </mat-form-field>
+        <table class="field-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Nhân viên</mat-label>
+                        <mat-select formControlName="idEmployee">
+                            <mat-option *ngFor="let employee of employees" [value]="employee.id">
+                                {{ employee.fullName }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idEmployee.invalid && idEmployee.touched && idEmployee.errors.required"> Chọn nhân viên </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Công việc</mat-label>
+                        <mat-select formControlName="idWork">
+                            <mat-option *ngFor="let work of works" [value]="work.idWork">
+                                {{ work.summary }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="idWork.invalid && idWork.touched && idWork.errors.required"> Chọn công việc </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <table class="field-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Ngày bắt đầu</mat-label>
+                        <input matInput formControlName="startDate" [matDatepicker]="dp3" disabled autocomplete="off">
+                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                        <mat-error *ngIf="startDate.invalid && startDate.touched && startDate.errors.required"> Ngày bắt đầu không rỗng </mat-error>
+                        <mat-error *ngIf="startDate.invalid && startDate.touched && startDate.errors.curentDay"> Không lớn hơn ngày hiện tại </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="field-full-width">
+                        <mat-label>Giờ làm</mat-label>
+                        <input matInput type="number" formControlName="hour" autocomplete="off" >
+                        <mat-error *ngIf="hour.invalid && hour.touched && hour.errors.required"> Giờ làm không rỗng </mat-error>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <mat-form-field class="field-full-width">
+            <mat-label>Mô tả</mat-label>
+            <textarea matInput formControlName="description" autocomplete="off"></textarea>
+            <mat-error *ngIf="description.invalid && description.touched && description.errors.required"> Mô tả không rỗng </mat-error>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="formUpdate.invalid" color="primary" type="submit">Thêm</button>
+    </form>
+</div>
+
+

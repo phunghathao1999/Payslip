@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="title-page">
+        Time sheet
+    </div>
+    <div class="header">
+        <mat-form-field class="field-sort" appearance="outline">
+            <mat-label>Chọn dự án</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let project of projects" [value]="project.idProject" (click)="selectProject(project.idProject)">
+                    {{ project.nameProject }}
+                 </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z8 ">
+        <table>
+            <tr>
+                <th>Công việc</th>
+                <th>Chủ nhật</th>
+                <th>Thứ 2</th>
+                <th>Thứ 3</th>
+                <th>Thứ 4</th>
+                <th>THứ 5</th>
+                <th>Thứ 6</th>
+                <th>THứ 7</th>
+            </tr>
+            <tr *ngFor="let item of sunday">
+                <td> {{item.summary}} </td>
+                <td> {{item.hour}} hours </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let item of monday">
+                <td> {{item.summary}} </td>
+                <td></td>
+                <td> {{item.hour}} hours </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let item of tuseday">
+                <td> {{item.summary}} </td>
+                <td></td>
+                <td></td>
+                <td> {{item.hour}} hours </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let item of wednesday">
+                <td> {{item.summary}} </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td> {{item.hour}} hours </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let item of thursday">
+                <td> {{item.summary}} </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td> {{item.hour}} hours </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let item of friday">
+                <td> {{item.summary}} </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td> {{item.hour}} hours </td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let item of saturday">
+                <td> {{item.summary}} </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td> {{item.hour}} hours </td>
+            </tr>
+            <tr>
+                <td>Tổng thời gian</td>
+                <td> 0 hours </td>
+                <td> 0 hours </td>
+                <td> 0 hours </td>
+                <td> 0 hours </td>
+                <td> 0 hours </td>
+                <td> 0 hours </td>
+                <td> 0 hours </td>
+            </tr>
+        </table>
+        <div class="pagination">
+            <div class="pagination-outer-container">
+                <div class="pagination-container">
+                    <div class="paginator-range-actions">
+                        <div class="paginator-range-label">
+                            Từ {{fromDate | date: 'dd'}}-{{fromDate | date:'MM'}}-{{fromDate | date: 'yyyy'}} đến {{toDate | date: 'dd'}}-{{toDate | date:'MM'}}-{{toDate | date: 'yyyy'}}
+                        </div>
+                        <button mat-button color="primary" [disabled]="fromDate <= lastDate" (click)="previous()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                        <button mat-button color="primary" [disabled]="toDate >= firstDate" (click)="next()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,46 @@
+* { box-sizing: border-box; }
+
+.top {
+    padding: 10px;
+}
+
+.row {
+    clear: both;
+}
+  
+.leftcolumn {   
+    float: left;
+    width: 30%;
+}
+  
+.rightcolumn {
+    float: left;
+    width: 70%;
+    padding-left: 20px;
+    margin-bottom: 40px;
+}
+
+img {
+    height: 70px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.leftcolumn-card {
+    padding: 20px;
+}
+
+mat-card-content {
+    margin-top: 10px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}

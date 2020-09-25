@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="title-page">
+      Payslip
+    </div>
+    <div class="header">
+      <button class="addbtn" mat-icon-button><mat-icon>adduser</mat-icon></button>
+      <mat-form-field class="field-sort" appearance="outline">
+        <mat-label>Sắp xếp</mat-label>
+        <mat-select [(value)]="pagination.sortKey">
+          <!-- <mat-option value="nameProject" (click)="sort('nameProject')"> Tên </mat-option>
+          <mat-option value="joinDay" (click)="sort('joinDay')"> Ngày vào làm </mat-option>
+          <mat-option value="status" (click)="sort('status')"> Trạng thái </mat-option> -->
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="field-search" appearance="outline">
+        <mat-label>Tìm kiếm</mat-label>
+        <input matInput (keyup)="searchPayslip()" [(ngModel)]="keySearch" autocomplete="off">
+      </mat-form-field>
+    </div>
+    <div class="flex-container">
+      <mat-card *ngFor="let item of payslips?.pageOfItems">
+          <mat-card-title> {{item.fullName}} </mat-card-title>
+          <mat-card-content>
+              <p> Nội dung: asdasdasd </p>
+              <p> Nội dung: asdasdasd </p>
+              <p> Nội dung: asdasdasd </p>
+          </mat-card-content>
+      </mat-card>
+
+    </div>
+</div>

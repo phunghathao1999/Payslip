@@ -1,0 +1,60 @@
+<mat-drawer-container autosize>
+    <mat-drawer class="sidenav" mode="side" opened>
+        <mat-nav-list class="mat-list-show">
+            <a mat-list-item routerLink="/listwork">
+                <div class="show-icon">
+                    <mat-icon>list_alt</mat-icon>
+                </div>
+                <label>List work</label> 
+            </a>
+            <a mat-list-item routerLink="/timesheet">
+                <div class="show-icon">
+                    <mat-icon>calendar_today</mat-icon>
+                </div>
+                <label>Time sheet</label> 
+            </a>
+            <a mat-list-item routerLink="/admin/timework">
+                <div class="show-icon">
+                    <mat-icon>hourglass_empty</mat-icon>
+                </div>
+                <label>Time work</label> 
+            </a>
+            <a mat-list-item routerLink="/admin/work">
+                <div class="show-icon">
+                    <mat-icon>work_outline</mat-icon>
+                </div>
+                <label>Work</label> </a>
+            <a mat-list-item routerLink="/admin/employee"> 
+                <div class="show-icon">
+                    <mat-icon>person_outline</mat-icon>
+                </div>
+                <label>Employee</label> 
+            </a>
+            <a mat-list-item routerLink="/admin/project">
+                <div class="show-icon">
+                    <mat-icon>save</mat-icon>
+                </div>
+                <label>Project</label> 
+            </a>
+            <a mat-list-item routerLink="/admin/payslip">
+                <div class="show-icon">
+                    <mat-icon>payment</mat-icon>
+                </div>
+                <label>Payslip</label> 
+            </a>
+        </mat-nav-list>
+        <mat-nav-list class="mat-list-hidden">
+            <a mat-list-item routerLink="/listwork" matTooltip="List work" matTooltipPosition="right"> <mat-icon>list_alt</mat-icon> </a>
+            <a mat-list-item routerLink="/timesheet" matTooltip="Time sheet" matTooltipPosition="right"> <mat-icon>calendar_today</mat-icon> </a>
+            <a mat-list-item routerLink="/admin/timework" matTooltip="Time work" matTooltipPosition="right"> <mat-icon>hourglass_empty</mat-icon> </a>
+            <a mat-list-item routerLink="/admin/work" matTooltip="Work" matTooltipPosition="right"> <mat-icon>work_outline</mat-icon> </a>
+            <a mat-list-item routerLink="/admin/employee" matTooltip="Employee" matTooltipPosition="right"> <mat-icon>person_outline</mat-icon> </a>
+            <a mat-list-item routerLink="/admin/project" matTooltip="Project" matTooltipPosition="right"> <mat-icon>save</mat-icon> </a>
+            <a mat-list-item routerLink="/admin/payslip" matTooltip="Payslip" matTooltipPosition="right"> <mat-icon>payment</mat-icon> </a>
+        </mat-nav-list>
+    </mat-drawer>
+    
+    <div class="body">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

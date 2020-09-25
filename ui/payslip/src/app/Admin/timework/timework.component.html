@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="title-page">
+        Time work
+    </div>
+    <div class="header">
+        <button class="addbtn" mat-icon-button (click)="dialogAdd()"><mat-icon>adduser</mat-icon></button>
+        <mat-form-field class="field-sort" appearance="outline">
+        <mat-label>Sắp xếp</mat-label>
+        <mat-select [(value)]="pagination.sortKey">
+            <mat-option value="title" (click)="sort('title')"> Tiêu đề </mat-option>
+            <mat-option value="hour" (click)="sort('hour')"> Giờ làm </mat-option>
+            <mat-option value="startDate" (click)="sort('startDate')"> Ngày làm </mat-option>
+        </mat-select>
+        </mat-form-field>
+        <mat-form-field class="field-search" appearance="outline">
+        <mat-label>Tìm kiếm</mat-label>
+        <input matInput (keyup)="search()" [(ngModel)]="keySearch" autocomplete="off">
+        </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z8 ">
+        <table mat-table [dataSource]="timework?.pageOfItems">
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Tiêu đề </th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Mô tả </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="idWork">
+                <th mat-header-cell *matHeaderCellDef> ID work </th>
+                <td mat-cell *matCellDef="let element"> {{element.idWork}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fullName">
+                <th mat-header-cell *matHeaderCellDef> Nhân viên </th>
+                <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="hour">
+                <th mat-header-cell *matHeaderCellDef> Giờ làm </th>
+                <td mat-cell *matCellDef="let element"> {{element.hour}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+                <th mat-header-cell *matHeaderCellDef> Bắt đầu </th>
+                <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"><button type="button" mat-icon-button (click)="dialogUpdate(element)"><mat-icon>open_in_new</mat-icon></button></td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"><button type="button" mat-icon-button color="primary" (click)="dialogDelete(element.idWorktime)"><mat-icon>delete</mat-icon></button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="timeworkColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: timeworkColumns;"></tr>
+        </table>
+        <div class="pagination">
+            <div class="pagination-outer-container">
+                <div class="pagination-container">
+                <div class="pagination-page-size">
+                    <div class="pagination-page-size-label">Hiển thị: </div>
+                    <mat-form-field class="paginator-page-size-select">
+                    <mat-select [(value)]="pagination.pageSize">
+                        <mat-option (click)="pagaSize(10)">10</mat-option>
+                        <mat-option (click)="pagaSize(20)">20</mat-option>
+                        <mat-option (click)="pagaSize(40)">40</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="paginator-range-actions">
+                    <div class="paginator-range-label">
+                    {{ timework?.currentPage*timework?.pageSize }} - {{ timework?.currentPage*timework?.currentPage + timework?.pageSize }} của {{ timework?.totalItems }}
+                    </div>
+                    <button mat-button color="primary" [disabled]="timework?.currentPage == 0" (click)="setPage(timework.currentPage - 1)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                    <button mat-button color="primary" [disabled]="timework?.currentPage == timework?.totalPages - 1" (click)="setPage(timework.currentPage + 1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+  

@@ -1,0 +1,48 @@
+.login{
+    height: 100%;
+    align-content: center;
+    padding-top: 50px;
+    display: block;
+    text-align: center;
+    min-height: 800px;
+}
+
+mat-card-header {
+    display: block;
+    border-bottom: 1px solid;
+}
+
+mat-card-title {
+    margin-top: 12px;
+}
+
+.login-card {
+    margin-left: auto;
+    margin-right: auto;
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 340px;
+    background-color: white !important;
+    border-style: 1px solid;
+}
+
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+a {
+    color: #3f51b5;
+}
+
+a :hover {
+    color: black;
+}
+
+mat-card-content {
+    padding-top: 50px;
+}

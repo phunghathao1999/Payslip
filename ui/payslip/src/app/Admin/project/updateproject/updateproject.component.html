@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>Thêm dự án</h1>
+
+<div mat-dialog-content>
+   <form class="form" [formGroup]="formUpdateProject" (ngSubmit)="UpdateProject()">
+      <mat-form-field class="field-full-width">
+         <mat-label>Tên dự án</mat-label>
+         <input matInput formControlName="nameProject" autocomplete="off" >
+         <mat-error *ngIf="nameProject.invalid && nameProject.touched && nameProject.errors.required"> Tên không rỗng </mat-error>
+         <mat-error *ngIf="nameProject.invalid && nameProject.touched && nameProject.errors.minlength"> Tên không ít hơn 5 kí tự </mat-error>
+      </mat-form-field>
+      <table class="field-full-width" cellspacing="0">
+         <tr>
+            <td>
+               <mat-form-field class="field-full-width">
+                  <mat-label>Ngày bắt đầu</mat-label>
+                  <input matInput formControlName="startDate" [matDatepicker]="dp3" disabled autocomplete="off">
+                  <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                  <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                  <mat-error *ngIf="startDate.invalid && startDate.touched && startDate.errors.required"> Ngày bắt đầu không rỗng </mat-error>
+               </mat-form-field>
+            </td>
+            <td>
+               <mat-form-field class="field-full-width">
+                  <mat-label>Ngày kết thúc</mat-label>
+                  <input matInput formControlName="endDate" [matDatepicker]="dp4" disabled autocomplete="off">
+                  <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                  <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                  <mat-error *ngIf="endDate.invalid && endDate.touched && endDate.errors.required"> Ngày kết thúc không rỗng </mat-error>
+                  <div class="error" *ngIf="formUpdateProject.errors?.enddate"> Không lớn hơn ngày bắt đầu </div>
+               </mat-form-field>
+            </td>
+         </tr>
+      </table>
+      <table class="field-full-width" cellspacing="0">
+         <tr>
+            <td>
+               <mat-form-field class="field-full-width">
+                  <mat-label>Loại dự án</mat-label>
+                  <mat-select formControlName="typeProject">
+                     <mat-option *ngFor="let typeProject of typeProjects" [value]="typeProject.id">
+                        {{ typeProject.typeName }}
+                     </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="typeProject.invalid && typeProject.touched && typeProject.errors.required"> Chọn loại dự án </mat-error>
+               </mat-form-field>
+            </td>
+            <td>
+               <mat-form-field class="field-full-width">
+                  <mat-label>Trạng thái</mat-label>
+                  <mat-select formControlName="status">
+                     <mat-option value="START"> START </mat-option>
+                     <mat-option value="DONE"> DONE </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="status.invalid && status.touched && status.errors.required"> Chọn loại dự án </mat-error>
+               </mat-form-field>
+            </td>
+         </tr>
+      </table>
+      <mat-form-field class="field-full-width">
+         <mat-label>Nhân viên</mat-label>
+         <mat-select formControlName="employee" multiple>
+            <mat-option *ngFor="let employee of employees" [value]="employee.id">{{employee.fullName}}</mat-option>
+         </mat-select>
+         <mat-error *ngIf="employee.invalid && employee.touched && employee.errors.required"> Chọn nhân viên </mat-error>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+         <mat-label>Mô tả</mat-label>
+         <textarea matInput formControlName="description" autocomplete="off"></textarea>
+         <mat-error *ngIf="description.invalid && description.touched && description.errors.required"> Mô tả không rỗng </mat-error>
+      </mat-form-field>
+      <button mat-raised-button [disabled]="formUpdateProject.invalid" color="primary" type="submit">Thêm</button>
+   </form>
+</div>
+

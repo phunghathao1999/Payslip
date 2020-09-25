@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="title-page">
+      List work
+    </div>
+    <div class="header">
+        <mat-form-field class="field-select" appearance="outline">
+          <mat-label>Chọn dự án</mat-label>
+          <mat-select [(value)]="pagination.idProject">
+            <mat-option *ngFor="let project of projects" value="project.idProject" (click)="selectProject(project.idProject)"> {{project.nameProject}} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="field-sort" appearance="outline">
+            <mat-label>Sắp xếp</mat-label>
+            <mat-select [(value)]="pagination.sortKey">
+              <mat-option value="summary" (click)="sort('summary')"> Dự án </mat-option>
+              <mat-option value="startDate" (click)="sort('startDate')"> Ngày bắt đầu </mat-option>
+              <mat-option value="endDate" (click)="sort('endDate')"> Ngày kết thúc </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="field-search" appearance="outline">
+            <mat-label>Tìm kiếm</mat-label>
+            <input matInput (keyup)="search()" [(ngModel)]="keySearch" autocomplete="off">
+        </mat-form-field>
+    </div>
+    <div class="content">
+      <div *ngFor="let work of works?.pageOfItems">
+        <a (click)="add(work)">
+          <mat-card>
+              <mat-card-title> {{work.summary}} </mat-card-title>
+              <mat-card-content>
+                  <label> Dự án: {{work.nameProject}} </label>
+                  <p> Nội dung: {{work.description}} </p>
+              </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+    </div>
+    <div class="pagination">
+      <div class="pagination-outer-container">
+        <div class="pagination-container">
+          <div class="pagination-page-size">
+            <div class="pagination-page-size-label">Hiển thị: </div>
+            <mat-form-field class="paginator-page-size-select">
+              <mat-select [(value)]="pagination.pageSize">
+                <mat-option value="{{10}}" (click)="pagaSize(10)">10</mat-option>
+                <mat-option value="{{20}}" (click)="pagaSize(20)">20</mat-option>
+                <mat-option value="{{40}}" (click)="pagaSize(40)">40</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="paginator-range-actions">
+            <div class="paginator-range-label">
+              {{ works?.currentPage*works?.pageSize }} - {{ works?.currentPage*works?.currentPage + works?.pageSize }} của {{ works?.totalItems }}
+            </div>
+            <button mat-button color="primary" [disabled]="works?.currentPage == 0" (click)="setPage(works?.currentPage - 1)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+            <button mat-button color="primary" [disabled]="works?.currentPage == works?.currentPage" (click)="setPage(works?.currentPage + 1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

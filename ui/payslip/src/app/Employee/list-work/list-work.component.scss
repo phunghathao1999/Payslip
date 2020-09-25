@@ -1,0 +1,83 @@
+.header {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.field-select {
+    padding-left: 2%;
+    width: 20%;
+}
+
+.field-sort {
+    padding-left: 2%;
+    width: 20%;
+}
+
+.field-search {
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 52%;
+}
+
+.content {
+    padding-top: 30px;
+    width: 100%;
+    display: block;
+}
+
+mat-card {
+    height: 200px;
+    width: 150px;
+    float: left;
+    margin: 5px;
+}
+  
+a :hover {
+    background: #E0FFFF;
+}
+
+.pagination {
+    clear: both;
+}
+
+.pagination-outer-container {
+    display: flex;
+}
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+}
+
+.pagination-page-size {
+    display: flex;
+    align-items: baseline;
+    margin-right: 8px;
+}
+
+.pagination-page-size-label {
+    margin: 0 4px;
+}
+
+.mat-form-field {
+    text-align: left;
+}
+
+.paginator-page-size-select {
+    margin: 6px 4px 0 4px;
+    width: 56px;
+}
+
+.paginator-range-actions {
+    display: flex;
+    align-items: center;
+}
+
+.mat-paginator-range-label {
+    margin: 0 32px 0 24px;
+}
